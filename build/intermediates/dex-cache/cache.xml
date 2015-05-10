@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/googleplayservices_lib/build/libs/googleplayservices_lib.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e8bd9422d538f73e739e1cdd5aea4641449d2bc3">
+        <dex dex="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/pre-dexed/debug/googleplayservices_lib-16adbe89010c6f01d696be3f45e8d4d6c2d43a06.jar" />
+    </item>
+    <item
+        jar="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/pre-dexed/debug/classes-7ca854581de64505b82517bba564a3edbb19e9e5.jar" />
+    </item>
+    <item
+        jar="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/exploded-aar/whoop/crosswalkwebview12412964arm/unspecified/libs/xwalk_core_library_java_app_part.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2e23c1eadfca57fc4fc2160cde924f0a0e7e4497">
+        <dex dex="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/pre-dexed/debug/xwalk_core_library_java_app_part-11879fff3d268e9fe2a1b38fa74ae879acddc2aa.jar" />
+    </item>
+    <item
+        jar="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/exploded-aar/whoop/crosswalkwebview12412964arm/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="93ce91a0ff43ee06d3e4b934396dc1e009711218">
+        <dex dex="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/pre-dexed/debug/classes-6dc70809d13fa4c92d7d54516e47cb9d779aeb99.jar" />
+    </item>
+    <item
+        jar="/Users/rishabhbararia/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/pre-dexed/debug/support-v4-19.1.0-ab2bf44825e8d6c79cefd7af26a32c7668a6ef7e.jar" />
+    </item>
+    <item
+        jar="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/exploded-aar/whoop/crosswalkwebview12412964arm/unspecified/libs/xwalk_core_library_java_library_part.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="07711feb667876bb173025a280d7ec8d414d4de1">
+        <dex dex="/Users/rishabhbararia/Desktop/AndroidStudio/whoop/whoop/build/intermediates/pre-dexed/debug/xwalk_core_library_java_library_part-e60c1dd8aaa137b0493a6649899db7b23466cb1e.jar" />
+    </item>
+
+</items>

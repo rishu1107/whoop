@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/crosswalkwebview12412964arm/crosswalkwebview12412964arm.iml" filepath="$PROJECT_DIR$/crosswalkwebview12412964arm/crosswalkwebview12412964arm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/googleplayservices_lib/googleplayservices_lib.iml" filepath="$PROJECT_DIR$/googleplayservices_lib/googleplayservices_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whoop.iml" filepath="$PROJECT_DIR$/whoop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/whoop/whoop-whoop.iml" filepath="$PROJECT_DIR$/whoop/whoop-whoop.iml" />
+    </modules>
+  </component>
+</project>
+

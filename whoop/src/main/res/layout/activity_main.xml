@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"  >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundcurverect"
+        android:layout_margin="20dp"
+        android:orientation="vertical" >
+      
+        
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="20"
+	        android:orientation="vertical" >
+	        
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+					<LinearLayout 
+					    android:id="@+id/soundlin"
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_marginLeft="10dp"
+				    	android:layout_marginTop="10dp"
+				    	android:orientation="vertical">
+					     <ImageView 
+					         android:id="@+id/soundim"
+					         android:layout_width="50dp"
+					         android:layout_height="50dp"
+					         android:background="@drawable/background_top_left_circle"
+					         android:src="@drawable/soundon"/>
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:id="@+id/vibrationlin"
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_marginLeft="10dp"
+				    	android:layout_marginTop="10dp"
+				    	android:orientation="vertical">
+					    <ImageView 
+					         android:id="@+id/vibrationim"
+					         android:layout_width="50dp"
+					         android:layout_height="50dp"
+					         android:background="@drawable/background_top_left_circle"
+					         android:src="@drawable/vibrationon"/>
+					</LinearLayout>
+	           	    
+	
+			</LinearLayout>
+			
+	        
+	        
+		</LinearLayout>
+		
+		
+		
+		
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="50"
+	        android:orientation="vertical" >
+	         
+	     
+		      <ImageView
+					         	android:id="@+id/greatersmallerthan"
+				                android:layout_width="match_parent"
+				                android:layout_height="match_parent"
+				                android:src="@drawable/logo"/>
+	        	
+		</LinearLayout>
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- 
+		
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="40"
+	        android:gravity="center"
+	        android:layout_gravity="center"
+	        android:orientation="vertical" >
+	        
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+					<LinearLayout 
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:orientation="vertical">
+					     <TextView
+					         	android:id="@+id/greaterthan"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:textSize="70dp"
+				                android:layout_margin="1dp"
+				                android:text=">" />
+					</LinearLayout>
+					
+					<LinearLayout 
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_gravity="center"
+				    	android:gravity="center"
+				    	android:orientation="vertical">
+					     <TextView
+					         	android:id="@+id/pipeoperator"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:textSize="70dp"
+				                android:layout_margin="1dp"
+				                android:text="ab" />
+					</LinearLayout>
+					
+					<LinearLayout 
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:orientation="vertical">
+					     <TextView
+					         	android:id="@+id/lessthan"
+				                android:layout_width="wrap_content"
+				                android:layout_height="wrap_content"
+				                android:textSize="70dp"
+				                android:layout_margin="1dp"
+				                android:text="&#60;"/>
+					</LinearLayout>
+	           	    
+	
+			</LinearLayout>
+			
+	        
+	        
+		</LinearLayout>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="30"
+	        android:orientation="vertical" >
+	        
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+					<LinearLayout 
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_margin="10dp"
+				    	android:orientation="vertical">
+					     <TextView
+				                android:id="@+id/text"
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                android:text="greater sna" />
+					</LinearLayout>
+					
+					<LinearLayout 
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_margin="10dp"
+				    	android:orientation="vertical">
+					     <TextView
+				                android:layout_width="fill_parent"
+				                android:layout_height="wrap_content"
+				                android:text="greater sna" />
+					</LinearLayout>
+	           	    
+	
+			</LinearLayout>
+			
+	        
+	        
+		</LinearLayout>
+		
+		
+		-->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="30"
+	        android:gravity="center"
+	        android:layout_gravity="center"
+	        android:orientation="vertical" >
+	        
+	        <LinearLayout
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
+					<LinearLayout 
+					    android:id="@+id/ratelin"
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_margin="10dp"
+				    	android:layout_gravity="center_horizontal"
+				    	android:orientation="vertical">
+					    <ImageView
+				                android:layout_width="60dp"
+				                android:layout_height="60dp"
+				                android:layout_marginTop="10dp"
+				                android:src="@drawable/rate"
+				                android:background="@drawable/backgroundcircle" />
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:id="@+id/playlin"
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_margin="10dp"
+				    	android:layout_gravity="center_horizontal"
+				    	android:orientation="vertical">
+					     <ImageView
+				                android:layout_width="80dp"
+				                android:layout_height="80dp"
+				                android:src="@drawable/play"
+				                android:background="@drawable/background_bottom_center__circle" />
+					</LinearLayout>
+					
+					<LinearLayout 
+					    android:id="@+id/sharelin"
+				    	android:layout_width="wrap_content"
+				    	android:layout_height="wrap_content"
+				    	android:layout_margin="10dp"
+				    	android:layout_gravity="center_horizontal"
+				    	android:orientation="vertical">
+					     <ImageView
+				                android:layout_width="60dp"
+				                android:layout_height="60dp"
+				                android:src="@drawable/share"
+				                android:layout_marginTop="10dp"
+				                android:background="@drawable/backgroundcircle" />
+					</LinearLayout>
+	           	    
+	
+			</LinearLayout>
+			
+	        
+	        
+		</LinearLayout>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</LinearLayout>
+	</LinearLayout>
+	
+</RelativeLayout>

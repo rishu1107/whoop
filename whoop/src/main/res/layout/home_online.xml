@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_rel">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:background="@color/blue"
+            android:layout_gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="playfle"
+                android:textColor="#ffffff"
+                android:paddingLeft="15dp"
+                android:textSize="30dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/title" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/blue"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+            <ListView
+                android:id="@+id/listview"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/grid_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#d3edfc"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+
+            <GridView
+                android:numColumns="auto_fit"
+                android:gravity="center"
+                android:columnWidth="80dp"
+                android:stretchMode="columnWidth"
+                android:scrollbars="none"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/grid"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:visibility="visible"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

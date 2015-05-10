@@ -1,0 +1,772 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,height=device-height,target-densitydpi=device-dpi"/>
+<title>Stick Hero s1</title>
+
+</head>
+ <body topmargin="0" leftmargin="0" width="100%" bgcolor="#000000" style="position:absolute">
+ <div id="bg" style="position:absolute; width:100%;">
+ <img src="background2.jpg" width="100%" height="100%">
+ </div>
+ <div id="bg2" style="position:absolute; width:100%;">
+ <img src="background2.jpg" width="100%" height="100%">
+ </div>
+ <div id="hero" style="position:absolute; width:100%;height:100%">
+ <img id="f1" src="1.png" style="position:absolute" width="100%" height="100%">
+ <img id="f2" src="2.png" style="position:absolute;display:none" width="100%" height="100%">
+ <img id="f3" src="3.png" style="position:absolute;display:none" width="100%" height="100%">
+ <img id="f4" src="4.png" style="position:absolute;display:none" width="100%" height="100%">
+ <img id="f5" src="5.png" style="position:absolute;display:none" width="100%" height="100%">
+ </div> 
+ 
+ <div style="position:relative">
+ <div id="step1" style="position:absolute;background-color:#ffffff">
+ <div id="red1" style="position:absolute;background-color:#ff0000">
+ </div>
+ </div>
+ <div id="step2" style="position:absolute;background-color:#ffffff">
+ <div id="red2" style="position:absolute;background-color:#ff0000">
+ </div>
+ </div>
+ <div id="step3" style="position:absolute;background-color:#ffffff">
+ <div id="red3" style="position:absolute;background-color:#ff0000">
+ </div>
+ </div>
+ </div>
+ 
+ <div id="stick1" style="position:absolute;background-color:#ffffff;">
+ </div>
+ <div id="stick2" style="position:absolute;background-color:#ffffff;">
+ </div>
+ 
+ <div id="score" align="center" style="position:absolute;color:#ffffff;background-color:#000000;border-radius: 5px;opacity:0.5">
+ <div id="stxt"  align="center" style="position:absolute; width:100%;color:#ffffff">
+		0
+	</div>
+ </div>
+ 
+ <div id="perfect" style="position:absolute">
+ <img id="bperfect" src="b1.png" style="position:absolute;display:none" width="100%" height="100%">
+ <img id="wperfect" src="w1.png" style="position:absolute;display:none" width="100%" height="100%">
+ </div>
+
+ 
+ <script>
+// Android.googlebanneradgs();
+var scrwidth=screen.width;
+var scrheight=window.innerHeight;
+
+var hero=document.getElementById("hero");
+var f1=document.getElementById("f1");
+var f2=document.getElementById("f2");
+var f3=document.getElementById("f3");
+var f4=document.getElementById("f4");
+var f5=document.getElementById("f5");
+
+var bg=document.getElementById("bg");
+var bg2=document.getElementById("bg2");
+
+var step1=document.getElementById("step1");
+var step2=document.getElementById("step2");
+var step3=document.getElementById("step3");
+
+var stick1=document.getElementById("stick1");
+var stick2=document.getElementById("stick2");
+
+var red1=document.getElementById("red1");
+var red2=document.getElementById("red2");
+var red3=document.getElementById("red3");
+
+var perfect=document.getElementById("perfect");
+var wperfect=document.getElementById("wperfect");
+var bperfect=document.getElementById("bperfect");
+
+var score=document.getElementById("score");
+var stxt=document.getElementById("stxt");
+
+document.body.addEventListener('touchmove', function(event) 
+	{
+	event.preventDefault();
+	},false);
+
+//position of the character/hero
+var hL=12;
+var hT=120;
+var hW=5;
+var hH=7.2;
+
+//position of the background div
+var bgL=0;
+var bgT=0;
+var bgW=164.444;
+//var bgH=177;
+
+
+//position of the 1st step from where the game starts
+var bL=0;
+var bT=127;
+var bW=20;
+var bH=30;
+
+//dimensions of the red at the center of the step
+var rW=2;
+var rH=1.5;
+
+//positioning of the +1 after perfect
+var pH=4.44;
+var pW=5.74;
+
+
+console.log("initialmargin="+parseInt((3/100)*scrwidth));
+
+//random width of each new step
+var maxWid=7*hW;
+var minWid=parseInt(hW);
+
+var maxW=parseInt((maxWid/100)*scrwidth);
+var minW=parseInt((minWid/100)*scrwidth);	
+
+
+//random left of the each new step from the hero
+var maxLeft=70;
+var minLeft=10;
+
+var maxL=parseInt((maxLeft/100)*scrwidth);
+var minL=parseInt((minLeft/100)*scrwidth);	
+
+//breadth of the stick and its original top
+var sH=0;
+var sT=bT;
+var sW=1;
+var sL=19;
+
+
+perfect.style.width=parseInt((pW/100)*scrwidth)+"px";
+perfect.style.height=parseInt((pH/100)*scrwidth)+"px";
+
+
+
+score.style.left=((40/100)*scrwidth) + "px";
+score.style.top=((25.925/100)*scrwidth) + "px";
+score.style.width=((20/100)*scrwidth) + "px";
+score.style.height=((10.74/100)*scrwidth) + "px";
+
+
+hero.style.left=parseInt((hL/100)*scrwidth)+"px";
+hero.style.top=parseInt((hT/100)*scrwidth)+"px";
+hero.style.width=parseInt((hW/100)*scrwidth)+"px";
+hero.style.height=parseInt((hH/100)*scrwidth)+"px";
+
+//hero initial position after shift
+var hIn=parseInt((hL/100)*scrwidth);
+var hWd=parseInt((hW/100)*scrwidth);
+
+//stick.style.WebkitTransform="rotate(90deg)";
+//stick.style.transform="rotate(270deg)";
+
+stick1.style.left=parseInt((sL/100)*scrwidth)+"px";
+stick1.style.top=parseInt((sT/100)*scrwidth)+"px";
+stick1.style.width=parseInt((sW/100)*scrwidth)+"px";
+stick1.style.height=parseInt((sH/100)*scrwidth)+"px";
+
+stick2.style.left=parseInt((sL/100)*scrwidth)+"px";
+stick2.style.top=parseInt((sT/100)*scrwidth)+"px";
+stick2.style.width=parseInt((sW/100)*scrwidth)+"px";
+stick2.style.height=parseInt((sH/100)*scrwidth)+"px";
+
+
+bg.style.left=parseInt((bgL/100)*scrwidth)+"px";
+bg.style.top=parseInt((bgT/100)*scrwidth)+"px";
+bg.style.width=parseInt((bgW/100)*scrwidth)+"px";
+//bg.style.height=parseInt((bgH/100)*scrwidth)+"px";
+//bg.style.height=scrheight+"px";
+
+bg2.style.left=parseInt(((bgL+bgW)/100)*scrwidth)+"px";
+bg2.style.top=parseInt((bgT/100)*scrwidth)+"px";
+bg2.style.width=parseInt((bgW/100)*scrwidth)+"px";
+//bg2.style.height=scrheight+"px";
+
+step1.style.left=parseInt((bL/100)*scrwidth)+"px";
+step1.style.top=parseInt((bT/100)*scrwidth)+"px";
+step1.style.width=parseInt((bW/100)*scrwidth)+"px";
+step1.style.height=parseInt((bH/100)*scrwidth)+"px";
+
+step2.style.left=parseInt((0/100)*scrwidth)+"px";
+step2.style.top=parseInt((bT/100)*scrwidth)+"px";
+step2.style.width=parseInt((0/100)*scrwidth)+"px";
+step2.style.height=parseInt((bH/100)*scrwidth)+"px";
+
+step3.style.left=parseInt((0/100)*scrwidth)+"px";
+step3.style.top=parseInt((bT/100)*scrwidth)+"px";
+step3.style.width=parseInt((0/100)*scrwidth)+"px";
+step3.style.height=parseInt((bH/100)*scrwidth)+"px";
+
+
+
+red1.style.width=parseInt((0/100)*scrwidth)+"px";
+red2.style.width=parseInt((0/100)*scrwidth)+"px";
+red3.style.width=parseInt((0/100)*scrwidth)+"px";
+
+red1.style.height=parseInt((0/100)*scrwidth)+"px";
+red2.style.height=parseInt((0/100)*scrwidth)+"px";
+red3.style.height=parseInt((0/100)*scrwidth)+"px";
+
+stxt.style.top=parseInt((parseInt(score.style.height))*0.2)+"px"; 
+stxt.style.fontSize=parseInt((parseInt(score.style.height))*0.6)+"px"; 
+stxt.style.left=parseInt((0/100)*scrwidth)+"px";
+stxt.style.width=parseInt(score.style.width)+"px";
+
+
+
+
+//array of the steps
+var setpArr=[step1,step2,step3];
+
+//array of the red centers in each steps
+var redArr=[red1,red2,red3];
+
+
+//array of sticks used in the game
+var stickArr=[stick1,stick2];
+//order of stick being used currently
+var st=0;
+
+//order of the step created
+var s=0;
+
+//order of the step where the hero stands
+var l=0;
+
+//width of the new step
+var stepwidth;
+
+//distance between the current and next step
+var stepgap;
+
+//variable of new step left position from the screen's left
+var nsL;
+
+//variable of hero stop position when the stick is of right length
+var Hl;
+
+//speed of the stick while bending down
+var rr3=10;
+var xi=4;
+
+//variable to check whether the hero will go forward or fall down--"l" stands for living, "d" for die
+//var h;
+
+//variable to stop touch till the hero completes his movement to the next step--""
+var touch="off";
+
+//variable to stop second touch when the first one is on
+var touched=false; 
+
+//array of hero frames
+var hArr=[f1,f2,f3,f4,f5];
+//order of the frames array
+var o=0;
+
+
+//variables to control hero's speed while he is moving forward
+var pm=parseInt((2/100)*scrwidth);
+var rr=20;
+
+//variable to control hero's speed of his moving legs
+var rr1=40;
+
+//variable for moving the steps to the left once the hero reaches the right position
+var pm1=parseInt((4/100)*scrwidth);
+var rr2=20;	
+
+//speed of the hero while moving down
+var pm2=parseInt((4/100)*scrwidth);
+
+//speed of body shaking
+var rr4=8;
+var pm3=2;
+
+
+//counter of the score
+var c=0;
+
+
+//variable of sound files used in the game
+
+//tap sound
+var tS="tap.wav";
+var fS="fall.mp3";
+var pS="perfect.mp3";
+var dS="dead.mp3";
+
+start();
+
+
+function start()
+{
+touch="on";
+nxtstep();
+}
+//variable of the gap between the hero and the current step end
+var mrgn;
+//variable of the width of the central red div in the center of the step
+var rWid;
+
+function nxtstep()
+{
+	s++;
+	if(s>=setpArr.length)
+	{
+	s=0;	
+	}
+	stepgap=Math.floor((maxL-(minL-1))*Math.random())+minL;
+	stepwidth=Math.floor((maxW-(minW-1))*Math.random())+minW;
+	if(s<=0)
+		{
+		p=2;
+		}
+	else
+	{
+		p=s-1;
+	}
+	console.log("stepgap="+stepgap);
+	console.log("stepwidth="+stepwidth);
+	nsL=parseInt(setpArr[p].style.left)+parseInt(setpArr[p].style.width)+stepgap;
+	setpArr[s].style.left=nsL+"px";
+	mrgn=parseInt(((bL+bW-hL-hW)/100)*scrwidth);
+	console.log("mrgn="+mrgn);
+	Hl=nsL+stepwidth-mrgn-hWd;
+	setpArr[s].style.width=stepwidth+"px";
+	redArr[s].style.width=parseInt((rW/100)*scrwidth)+"px";
+	redArr[s].style.height=parseInt((rH/100)*scrwidth)+"px";
+	rWid=parseInt(redArr[s].style.width);
+	redArr[s].style.left=((stepwidth-rWid)/2)+"px";
+	touch="on";
+	
+}
+
+var stksI;
+
+bg.addEventListener("touchstart", onTouchStart1);
+bg.addEventListener("touchend", onTouchEnd1);
+bg.addEventListener("touchcancel", onTouchCancel1);
+
+bg2.addEventListener("touchstart", onTouchStart1);
+bg2.addEventListener("touchend", onTouchEnd1);
+bg2.addEventListener("touchcancel", onTouchCancel1);
+
+step1.addEventListener("touchstart", onTouchStart1);
+step1.addEventListener("touchend", onTouchEnd1);
+step1.addEventListener("touchcancel", onTouchCancel1);
+
+step2.addEventListener("touchstart", onTouchStart1);
+step2.addEventListener("touchend", onTouchEnd1);
+step2.addEventListener("touchcancel", onTouchCancel1);
+
+step3.addEventListener("touchstart", onTouchStart1);
+step3.addEventListener("touchend", onTouchEnd1);
+step3.addEventListener("touchcancel", onTouchCancel1);
+
+
+var targets1 = []; // create array with all touch targets 
+                // still needs some sort of garbage collection though
+
+//var for continuing tap sound                
+var tSsI;                
+                
+function onTouchStart1(event){
+	if(touch=="on" && touched==false)
+		{
+		touched=true;
+		//try{
+			//Android.playSoundgs(tS);
+		//tSsI=setInterval(function(){
+			//	Android.playSoundgs(tS);
+			//},100)
+			//}
+		//finally
+		//{
+ targets1.push(event.target); // add target to array
+
+ var dT=sT,dH=0;	
+ 
+ stksI=setInterval(function(){
+	
+	dT-=3;
+	dH+=3;
+		stickArr[st].style.height=parseInt((dH/100)*scrwidth)+"px";
+		stickArr[st].style.top=parseInt((dT/100)*scrwidth)+"px";
+	},50)
+		//}
+		}
+ 
+ }
+
+function onTouchEnd1(event){
+	if(touch=="on" && touched==true)
+	{
+		console.log("touch ended & touch="+touch);
+		touched=false;
+		
+  // loop through array to find your target
+  for (var i = 0; i < targets1.length; i++) {
+      if (targets1[i] == event.target) { //test target
+    	  touch="off";
+      	  clearInterval(stksI);
+      	clearInterval(tSsI);
+      	  bend();
+		// this is your match! Do something with this element
+          targets1[i].splice(i,1); // remove entry after event ends;
+      }
+  }
+	}
+}
+
+
+function onTouchCancel1(event){
+  // loop through array to find your target
+  if(touch=="on" && touched==true)
+		{
+	  console.log("touched & touch="+touch);
+	  touched=false;
+  for (var i = 0; i < targets1.length; i++) { 
+      if (targets1[i] == event.target) { //test target
+    	  touch="off";
+    	  clearInterval(stksI);
+    	  clearInterval(tSsI);
+    	  bend();
+      targets1[i].splice(i,1); // remove entry after event ends;
+      }
+  }
+		}
+}
+
+
+var bsI;
+var x=0;
+
+function bend()
+{
+	
+	stickArr[st].style.WebkitTransformOrigin = "50% 100%";
+	bsI=setInterval(function(){
+		
+		if(x<=90)
+			{
+		x+=xi;
+		stickArr[st].style.WebkitTransform="rotate("+x+"deg)";
+			}
+		else
+		{
+		x=0;	
+		
+		stickArr[st].style.WebkitTransform="rotate(90deg)";
+		clearInterval(bsI);
+		check();
+		}
+	},rr3)
+	
+	
+	
+}
+
+
+//position at which the hero dies
+var dp;
+//function to check whether hero lives or dies
+function check()
+{
+	var sHgt=parseInt(stickArr[st].style.height);
+	var sWdt=parseInt(stickArr[st].style.width);
+	dp=sHgt-sWdt+parseInt(stickArr[st].style.left);
+	//console.log("stepwidth="+(sHgt-sWdt));
+	if(stepgap>(sHgt-sWdt) || (stepgap+stepwidth)<(sHgt-sWdt))
+		{
+		mL();
+		D();
+		//alert("hero dies");
+		
+		}
+	else
+	{
+		try{
+		Android.playSoundgs(fS);
+		}
+		finally
+		{
+			mL();
+			L();
+			c++;
+		if((stepgap+((stepwidth+rWid)/2))>=(sHgt-sWdt) && (stepgap+((stepwidth-rWid)/2))<=(sHgt-sWdt))
+			{
+			
+			//alert("perfect");
+			try{
+			Android.playSoundgs(pS);
+			}
+			finally
+			{
+				plus();
+				c++;
+			}
+			}
+		stxt.innerHTML=c;
+		}
+		//alert("hero lives")
+	}
+	
+	
+}
+
+//function to show the movement of +1 after stick being being positioned at perfect
+
+function plus()
+{
+	perfect.style.left=nsL+((stepwidth-parseInt(perfect.style.width))/2)+"px";
+	perfect.style.top=parseInt(step1.style.top)-parseInt(1.5*(parseInt(perfect.style.height)))+"px";
+	perfect.style.display="inline";
+	bperfect.style.display="inline";
+	var psI;
+	var pmp=parseInt((0.5/100)*scrwidth);
+	var x=1;
+	var xi=0.04;
+	
+	psI=setInterval(function(){
+		x-=xi;
+		
+		
+		if(x<=0.5)
+			{
+			clearInterval(psI);
+			
+			perfect.style.display="none";
+			bperfect.style.display="none";
+			perfect.style.top=parseInt(step1.style.top)-parseInt(1.5*(parseInt(perfect.style.height)))+"px";
+			perfect.style.opacity="1.0";
+			
+			}
+		
+		else
+		{
+			perfect.style.top=parseInt(perfect.style.top)-pmp+"px";
+			perfect.style.opacity=x;
+				
+		}
+		
+
+	},10)
+	
+	
+}
+
+
+//function to move the hero's legs
+var mLsI;
+function mL()
+{
+	
+	
+	mLsI=setInterval(function(){
+		
+		if(o<hArr.length-1)
+		{
+		o++;	
+		}
+	else
+	{
+	o=0;	
+	}
+	
+	hArr[o].style.display="inline";
+	var oi=o-1;
+	if(o<=0)
+		{
+		oi=hArr.length-1;
+		}
+	hArr[oi].style.display="none";
+	
+	},rr1);	
+	
+	
+}
+
+
+//function of hero living and moving to the next step
+function L()
+{
+	hero.style.left=parseInt(hero.style.left)+pm+"px";
+	
+  //  console.log("Hl="+Hl);
+   // console.log("hero.style.left="+parseInt(hero.style.left));
+    
+	
+	if(parseInt(hero.style.left)>=Hl)
+		{
+		clearInterval(mLsI);
+		hero.style.left=Hl+"px";
+		hArr[0].style.display="inline";
+		if(o!=0)
+			{
+		hArr[o].style.display="none";
+			}
+		next();
+		console.log("moved");
+		}
+	else
+	{
+			setTimeout(L,rr);
+	}
+	
+	
+	
+	
+}
+
+//funciton of hero dying due to wrong size of the stick
+function D()
+{
+	
+	hero.style.left=parseInt(hero.style.left)+pm+"px";
+
+	console.log("dp="+dp);
+    console.log("hero.style.left="+parseInt(hero.style.left));
+    
+
+	if(parseInt(hero.style.left)>=dp)
+	{
+		try{
+		Android.playSoundgs(dS);
+		}
+		finally
+		{
+		clearInterval(mLsI);
+		hero.style.left=dp+"px";
+		die();
+		console.log("dies");
+		}
+	}
+	else
+	{
+			setTimeout(D,rr);
+	}
+	
+}
+
+
+function die()
+{
+	x=90;
+	
+	var dsI=setInterval(function(){
+		
+		if(parseInt(hero.style.top)<=scrheight)
+			{
+			hero.style.top=parseInt(hero.style.top)+pm2+"px";
+			x+=xi;
+			stickArr[st].style.WebkitTransform="rotate("+x+"deg)";
+			}
+		else
+		{
+			hero.style.top=scrheight+"px";
+			stickArr[st].style.WebkitTransform="rotate(180deg)";
+			hero.style.display="none";
+			clearInterval(dsI);
+			shake();
+		}
+	},rr3)
+	
+	
+	
+}
+
+
+
+var ang=0;
+var angArr=[0,pm3,2*pm3,3*pm3,4*pm3,3*pm3,2*pm3,1*pm3,0*pm3,-1*pm3,-2*pm3,-3*pm3,-4*pm3,-3*pm3,-2*pm3,-1*pm3];
+var shakes=0;
+var maxshakes=75;
+
+function shake()
+{
+
+	shakes++;
+	ang++;
+	if(ang>=angArr.length-1)
+		{
+		ang=0;
+		}
+	document.body.style.top=angArr[ang]+"px";	
+	
+	if(shakes<=maxshakes)
+		{
+		setTimeout(shake,rr4);
+		}
+	else
+	{
+		document.body.style.top="0px";
+	}
+	
+}
+function next()
+{
+	setpArr[p].style.left=parseInt(setpArr[p].style.left)-pm1+"px";
+	setpArr[s].style.left=parseInt(setpArr[s].style.left)-pm1+"px";
+	bg.style.left=parseInt(bg.style.left)-1+"px";
+	bg2.style.left=parseInt(bg2.style.left)-1+"px";
+	hero.style.left=parseInt(hero.style.left)-pm1+"px";
+	stickArr[st].style.left=parseInt(stickArr[st].style.left)-pm1+"px";
+	if(parseInt(hero.style.left)<=hIn)
+		{
+		hero.style.left=hIn+"px";
+		//console.log("hIn="+hIn);
+		//console.log("hWd="+hWd);
+		//console.log("mrgn="+mrgn);
+		//console.log("StepWid="+parseInt(setpArr[s].style.width))
+		setpArr[s].style.left=hIn+hWd+mrgn-parseInt(setpArr[s].style.width)+"px";
+		//console.log("hero.style.left="+parseInt(hero.style.left));
+		//console.log("hero.style.width="+parseInt(hero.style.width));
+		//console.log("setpArr[s].style.left="+parseInt(setpArr[s].style.left));
+		//console.log("setpArr[s].style.width="+parseInt(setpArr[s].style.width));
+		setstep();
+		if((parseInt(bg.style.left)+parseInt(bg.style.width))<0)
+			{
+			bg.style.left=parseInt(bg2.style.left)+parseInt(bg2.style.width)+"px";
+			}
+		if((parseInt(bg2.style.left)+parseInt(bg2.style.width))<0)
+		{
+		bg2.style.left=parseInt(bg.style.left)+parseInt(bg.style.width)+"px";
+		}
+		}
+	else
+	{
+	setTimeout(next,rr2);	
+	}
+	
+	
+	
+}
+
+function setstep()
+{
+	if(st==0)
+		{
+		st=1;
+		}
+	else
+	{
+		st=0;
+	}
+	
+	stickArr[st].style.height=parseInt((sH/100)*scrwidth)+"px";
+	stickArr[st].style.top=parseInt((sT/100)*scrwidth)+"px";
+	stickArr[st].style.left=parseInt((sL/100)*scrwidth)+"px";
+	stickArr[st].style.width=parseInt((sW/100)*scrwidth)+"px";
+	stickArr[st].style.WebkitTransform="rotate(0deg)";
+	stickArr[st].style.WebkitTransformOrigin = "50% 50%";
+	nxtstep();
+}
+
+ </script>
+ 
+ </body>
+ </html>

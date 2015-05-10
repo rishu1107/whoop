@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="textsize15">17dp</dimen>
+    <dimen name="textsize20">20dp</dimen>
+    <dimen name="textsize12">12dp</dimen>
+    <dimen name="textsize1">15dp</dimen>
+    <dimen name="lesstextsize">12dp</dimen>
+    <dimen name="topmargin">31dp</dimen>
+    <dimen name="maintextsize">25dp</dimen>
+    <dimen name="minmargin">4dp</dimen>
+    <dimen name="menumargin">6dp</dimen>
+    <dimen name="ptop">11dp</dimen>
+    <dimen name="pleft">20dp</dimen>
+    <dimen name="marginm">8dp</dimen>
+    <dimen name="marginm1">9dp</dimen>
+    <dimen name="distancefromheight">5dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="peddingtext">15dp</dimen>
+    <dimen name="mindistance">4dp</dimen>
+    <dimen name="standerdmargin">32dp</dimen>
+    <dimen name="standerdmargin1">20dp</dimen>
+    <dimen name="standerdmarginleft">26dp</dimen>
+    <dimen name="textsize">21dp</dimen>
+    <dimen name="texts">26dp</dimen>
+    <dimen name="linearlay">40dp</dimen>
+    <dimen name="menutext">14dp</dimen>
+    <dimen name="mindis">1dp</dimen>
+    <dimen name="linedis">2dp</dimen>
+    <dimen name="editheight">49dp</dimen>
+    <dimen name="linheight">50dp</dimen>
+    <dimen name="testtext">10dp</dimen>
+    <dimen name="buttonheight">7dp</dimen>
+    <dimen name="loginedite">12dp</dimen>
+    <dimen name="textsecondsize">14dp</dimen>
+    <dimen name="signupscreens">45dp</dimen>
+    <dimen name="sizemargin">20dp</dimen>
+    <dimen name="sizecompare">36dp</dimen>
+    <dimen name="refferalmargin">33dp</dimen>
+    <dimen name="menulogoheight">155dp</dimen>
+    <dimen name="menutextsize">18dp</dimen>
+    <dimen name="gamebarline">28dp</dimen>
+    <dimen name="linesetting">59dp</dimen>
+    <dimen name="simagesize">47dp</dimen>
+    <dimen name="siconsize">42dp</dimen>
+    <dimen name="settingpline">59dp</dimen>
+    <dimen name="editmargin">90dp</dimen>
+    <dimen name="gcm_height">40dp</dimen> 
+    <dimen name="gcm_width">40dp</dimen> 
+        
+        
+</resources>

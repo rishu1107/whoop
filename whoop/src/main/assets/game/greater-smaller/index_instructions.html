@@ -1,0 +1,2068 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,height=device-height,target-densitydpi=device-dpi"/>
+<script src="js/1.js"></script>
+<script src="js/2.js"></script>
+<script src="js/touch.js"></script>
+<style>
+
+@font-face 
+{
+	font-family: 'Conv_TRAVELINGTYPEWRITER';
+	src: url('file:///android_asset/game/greater-smaller/fonts/TRAVELINGTYPEWRITER.eot');
+	src: local('a'), url('file:///android_asset/game/greater-smaller/fonts/TRAVELINGTYPEWRITER.ttf') format('truetype'), url('file:///android_asset/game/greater-smaller/fonts/TRAVELINGTYPEWRITER.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_EXISTENCE-LIGHT';
+	src: url('file:///android_asset/game/greater-smaller/fonts/EXISTENCE-LIGHT.eot');
+	src: local('b'), url('file:///android_asset/game/greater-smaller/fonts/EXISTENCE-LIGHT.ttf') format('truetype'), url('file:///android_asset/game/greater-smaller/fonts/EXISTENCE-LIGHT.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.txt
+	{
+		font-family:'Conv_TRAVELINGTYPEWRITER',Sans-Serif;
+		color:#2c3e50;
+	}
+
+.nos
+{
+
+       font-family:'Conv_EXISTENCE-LIGHT',Sans-Serif;
+		color:#ffffff;
+  
+
+}
+
+.score
+{
+
+       font-family:'Conv_EXISTENCE-LIGHT',Sans-Serif;
+		color:#ffffff;
+      
+
+
+}
+
+a:button {
+    ...
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+	
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	outline: none;	
+   -webkit-user-select: none;
+
+
+}
+	
+html,body{
+
+   width:100%  ;
+   overflow-x:hidden;
+
+
+}    
+/*
+#no2
+{
+
+background-color:red;
+}*/
+</style>
+
+</head>
+ <body topmargin="0" leftmargin="0" width="100%" bgcolor="#2c3e50">
+    
+    <div id="conatiner" style="position:relative; width:100%;height:100%;background-color:#2c3e50">
+    
+    <div id="greater" style="position:absolute; width:100%;background-color:#6bb9f0">
+     <div id="counter" class="score" align="center" style="position:absolute; width:100%">
+		0
+	</div>
+     <div id="gtxt" class="txt" align="center" style="position:absolute; width:100%">
+		GREATER
+	</div>
+    </div>
+	<div id="smaller" style="position:absolute; width:100%;background-color:#6bb9f0">
+     <div id="stxt" class="txt" align="center" style="position:absolute; width:100%;">
+		SMALLER
+	</div>
+    </div>
+
+
+
+<div id="no1"  align="center" style="position:absolute;z-index:1;width:100%">
+<div id="v1" class="nos" align="center" style="position:absolute; width:100%;">
+4
+</div>
+</div>
+  
+<div id="no2" align="center" style="position:absolute;z-index:1; width:100%">
+<div id="v2" class="nos" align="center" style="position:absolute; width:100%;">
+3
+</div>
+</div> 
+  
+<div id="no3" align="center" style="position:absolute;z-index:1; width:100%">
+<div id="v3" class="nos" align="center" style="position:absolute; width:100%;">
+5
+</div>
+</div>
+   
+<div id="no4" align="center"  style="position:absolute;z-index:1; width:100%">
+<div id="v4" class="nos" align="center" style="position:absolute; width:100%;">
+150
+</div>
+</div>
+   
+<div id="no5" align="center"  style="position:absolute;z-index:1; width:100%">
+<div id="v5" class="nos" align="center" style="position:absolute; width:100%;">
+226
+</div>
+</div>
+   
+<div id="msgbox" align="center"  style="position:absolute;z-index:1; width:100%;display:none">
+<img id="mimg" src="" width="100%" height="100%">
+</div>   
+   
+<div id="cover" style="position:absolute;width:100%;z-index:2">
+</div>    
+    
+    
+    
+    <div id="timer" style="width:100%; position:absolute;z-index:3">
+    </div>
+	
+</div>	 
+    <div id="blackbg" style="display:none; position:fixed; width:100%; height:100%; background-color: #000000; opacity:0.8">  
+     </div>  
+
+<div id="btn" style="position:absolute;width:100%">
+<img id="skip" style="position:absolute" src="file:///android_asset/game/greater-smaller/images/img/skip.png" width="100%" height="100%">
+<img id="play" style="position:absolute;display:none" src="file:///android_asset/game/greater-smaller/images/img/play.png" width="100%" height="100%">
+</div>
+    
+	<script>
+    var scrwidth=window.innerWidth;
+	var scrheight=window.innerHeight;
+	var sratio=(scrheight/scrwidth);
+	console.log("screenratio="+sratio)
+	
+	var blackbg=document.getElementById('blackbg');
+blackbg.style.left="0px";
+blackbg.style.top="0px";
+blackbg.style.width=parseInt((100/100)*scrwidth)+ "px";
+blackbg.style.height=parseInt((100/100)*scrheight)+ "px";
+
+	
+	
+	var timer=document.getElementById("timer"); 
+	var greater=document.getElementById("greater"); 
+	var smaller=document.getElementById("smaller"); 
+	var gtxt=document.getElementById("gtxt"); 
+	var	stxt=document.getElementById("stxt");
+	
+	var no1=document.getElementById("no1");
+	var no2=document.getElementById("no2");
+	var no3=document.getElementById("no3");
+	var no4=document.getElementById("no4");
+	var no5=document.getElementById("no5");
+	var conatiner=document.getElementById("conatiner");
+	var cover=document.getElementById("cover");
+	var counter=document.getElementById("counter");
+	
+	var v1=document.getElementById("v1");
+	var v2=document.getElementById("v2");
+	var v3=document.getElementById("v3");
+	var v4=document.getElementById("v4");
+	var v5=document.getElementById("v5");
+
+    var btn=document.getElementById('btn');
+    var skip=document.getElementById('skip');
+    var play=document.getElementById('play');
+	var msgbox=document.getElementById('msgbox');
+	var mimg=document.getElementById('mimg');
+	
+	
+	
+	var txt=document.getElementsByClassName('txt');
+	
+	//main container div
+	conatiner.style.left="0px";
+	conatiner.style.top="0px";
+	conatiner.style.width=scrwidth+"px";
+	conatiner.style.height=scrheight+"px";
+	
+
+
+	var gL=3.24;
+	var gW=93.518;
+	var gH=79.074;
+	var gT=3.24;
+	
+	var sL=3.24;
+	var sW=93.518;
+	var sH=79.074;
+	var sT=95.462;
+	
+	var tL=36.685;
+	var tW=26.722;
+	var tT=75.574;
+	var tH=26.722;
+	
+	if(sratio>1.75)
+		{
+		console.log("grp1");
+	gL=3.24;
+	gW=93.518;
+	gH=79.074;
+	gT=3.24;
+	
+	sL=3.24;
+	sW=93.518;
+	sH=79.074;
+	sT=95.462;
+	
+	tL=36.685;
+	tW=26.722;
+	tT=75.574;
+	tH=26.722;
+		}
+	else if(sratio<=1.75 && sratio>1.66)
+		{
+		console.log("grp2");
+		gL=3.24;
+		gW=93.518;
+		gH=73.518;//
+		gT=3.24;
+		
+		sL=3.24;
+		sW=93.518;
+		sH=73.518;//
+		sT=89.907;//
+		
+		tL=36.685;
+		tW=26.722;
+		tT=70.018;//
+		tH=26.722;
+		}
+	else if(sratio<=1.66 && sratio>1.639)
+	{
+		console.log("grp3");
+		gL=3.24;
+		gT=3.24;
+		gW=93.518;
+		gH=72.407;//
+		
+		sL=3.24;
+		sT=88.796;//
+		sW=93.518;
+		sH=72.407;//
+		
+		tL=36.685;
+		tT=68.907;//
+		tW=26.722;
+		tH=26.722;
+	}
+	else if(sratio<=1.639 && sratio>1.625)
+	{
+		console.log("grp4");
+		gL=3.24;
+		gT=3.24;
+		gW=93.518;
+		gH=71.666;//
+		
+		sL=3.24;
+		sT=88.055;//
+		sW=93.518;
+		sH=71.666;//
+		
+		tL=36.685;
+		tT=68.166;//
+		tW=26.722;
+		tH=26.722;
+	}
+	else if(sratio<=1.625 && sratio>1.45)
+	{
+		console.log("grp5");
+		gL=3.24;
+		gT=3.24;
+		gW=93.518;
+		gH=65.185;//
+		
+		sL=3.24;
+		sT=81.574;//
+		sW=93.518;
+		sH=65.185;//
+		
+		tL=36.685;
+		tT=61.685;//
+		tW=26.722;
+		tH=26.722;
+	}
+	else if(sratio<=1.45)
+	{
+		console.log("grp5");
+		gL=3.24;
+		gT=3.24;
+		gW=93.518;
+		gH=56.851;//
+		
+		sL=3.24;
+		sT=73.24;//
+		sW=93.518;
+		sH=56.851;//
+		
+		tL=36.685;
+		tT=53.333;//
+		tW=26.722;
+		tH=26.722;
+	}
+	console.log("screenwidth="+window.innerWidth);
+	
+	
+	
+	//message box positioning
+	msgbox.style.left="0px";
+	msgbox.style.width=parseInt((100/100)*scrwidth)+"px";
+	msgbox.style.height=parseInt((27.777/100)*scrwidth)+"px";
+	msgbox.style.top=parseInt(scrheight-(parseInt((31.48/100)*scrwidth)))+"px";
+	
+	//play icon on instructions screen
+	btn.style.left=parseInt((0/100)*scrwidth)+"px";
+	btn.style.top=parseInt((5.648/100)*scrwidth)+"px";
+	btn.style.width=parseInt((20/100)*scrwidth)+"px";
+	btn.style.height=parseInt((11.944/100)*scrwidth)+"px";
+	
+	
+	
+	//greater box posiitoning
+	greater.style.left=parseInt((gL/100)*scrwidth)+ "px";
+    greater.style.width=parseInt((gW/100)*scrwidth)+ "px";
+    
+	//smaller box posiitoning
+	smaller.style.left=parseInt((sL/100)*scrwidth)+ "px";
+    smaller.style.width=parseInt((sW/100)*scrwidth)+ "px";
+
+    
+    //responsive part
+    greater.style.height=parseInt((gH/100)*scrwidth)+ "px";
+	smaller.style.height=parseInt((sH/100)*scrwidth)+ "px";
+
+	greater.style.top=parseInt((gT/100)*scrwidth)+ "px";
+    smaller.style.top=parseInt((sT/100)*scrwidth)+ "px";
+
+	timer.style.left=parseInt((tL/100)*scrwidth) + "px";
+	timer.style.top=parseInt((tT/100)*scrwidth) + "px";
+	timer.style.width=parseInt((tW/100)*scrwidth) + "px";
+	timer.style.height=parseInt((tH/100)*scrwidth) + "px";
+
+
+
+	
+	greater.style.borderRadius = parseInt(scrwidth/40)+"px";
+	smaller.style.borderRadius = parseInt(scrwidth/40)+"px";
+	
+
+  //greater text
+    gtxt.style.fontSize=parseInt(scrheight/15)+"px"; 
+    gtxt.style.left=parseInt((0/100)*scrwidth)+"px";
+    gtxt.style.width=parseInt(greater.style.width)+"px";
+
+    
+    
+    var grT=parseInt(greater.style.top);
+    var grH=parseInt(greater.style.height);
+    var grB=grT+grH;
+    var smH=parseInt(smaller.style.height);
+    var smT=parseInt(smaller.style.top);
+    var mid=smT-grB;
+
+	//covering div to avoid the numbers from dragging until they are in the center
+    cover.style.left="0px";
+    cover.style.top=grB+"px";
+    cover.style.height=mid+"px";
+    cover.style.width=scrwidth+"px";
+
+    
+    
+	v1.style.fontSize=((0.4)*(smT-grH-grT))+"px"; 
+	v2.style.fontSize=((0.4)*(smT-grH-grT))+"px"; 
+	v3.style.fontSize=((0.4)*(smT-grH-grT))+"px"; 
+	v4.style.fontSize=((0.4)*(smT-grH-grT))+"px"; 
+	v5.style.fontSize=((0.4)*(smT-grH-grT))+"px"; 
+
+	
+	counter.style.fontSize=parseInt(parseInt(v1.style.fontSize)*2.8)+"px";
+	counter.style.left="0px";
+	counter.style.top=grT+"px";
+	counter.style.height=parseInt(1.5*parseInt(counter.style.fontSize))+"px";
+	counter.style.width=parseInt(greater.style.width)+"px";
+
+	
+	no1.style.height=(smT-grB)+"px";
+	no2.style.height=(smT-grB)+"px";
+	no3.style.height=(smT-grB)+"px";
+	no4.style.height=(smT-grB)+"px";
+	no5.style.height=(smT-grB)+"px";
+
+	no1.style.top=grB+"px";
+	no2.style.top=grB+"px";
+	no3.style.top=grB+"px";
+	no4.style.top=grB+"px";
+	no5.style.top=grB+"px";
+
+	//to ensure that the text comes in between the div
+/**	no1.style.lineHeight=parseInt(no1.style.height)+"px" ;
+	no2.style.lineHeight=parseInt(no2.style.height)+"px" ;
+	no3.style.lineHeight=parseInt(no3.style.height)+"px" ;
+	no4.style.lineHeight=parseInt(no4.style.height)+"px" ;
+	no5.style.lineHeight=parseInt(no5.style.height)+"px" ;
+**/
+	
+	no1.style.width=(parseInt(v1.style.fontSize)*3)+ "px";
+	no2.style.width=(parseInt(v2.style.fontSize)*3)+ "px";
+	no3.style.width=(parseInt(v3.style.fontSize)*3)+ "px";
+	no4.style.width=(parseInt(v4.style.fontSize)*3)+ "px";
+	no5.style.width=(parseInt(v5.style.fontSize)*3)+ "px";
+
+	v1.style.width=parseInt(no1.style.width)+"px";
+	v2.style.width=parseInt(no2.style.width)+"px";
+	v3.style.width=parseInt(no3.style.width)+"px";
+	v4.style.width=parseInt(no4.style.width)+"px";
+	v5.style.width=parseInt(no5.style.width)+"px";
+	
+	
+	//console.log("grB="+grB);
+	//console.log("mid="+mid);
+//	console.log("Hgt1="+Hgt1);
+	//console.log("no1.style.fontSize="+(parseInt(no1.style.fontSize)));
+	
+	//no1.style.top=grB+((mid-Hgt1)/2)+ "px";
+	//console.log("no1top="+(parseInt(no1.style.top)));
+	
+	//positioning of the numbers centrally in the div
+	    var vt1;
+    if(v1.offsetHeight)
+    {  
+    	vt1=v1.offsetHeight;
+    }
+    else if(v1.style.pixelHeight)
+    {
+    	vt1=v1.style.pixelHeight;
+    }
+
+    v1.style.top=((parseInt(no1.style.height)-parseInt(vt1))/2)+"px";
+var vT=parseInt(v1.style.top);
+    
+    var vt2;
+    if(v2.offsetHeight)
+    {  
+    	vt2=v2.offsetHeight;
+    }
+    else if(v2.style.pixelHeight)
+    {
+    	vt2=v2.style.pixelHeight;
+    }
+
+    v2.style.top=((parseInt(no2.style.height)-parseInt(vt2))/2)+"px";
+
+    var vt3;
+    if(v3.offsetHeight)
+    {  
+    	vt3=v3.offsetHeight;
+    }
+    else if(v3.style.pixelHeight)
+    {
+    	vt3=v3.style.pixelHeight;
+    }
+
+    v3.style.top=((parseInt(no3.style.height)-parseInt(vt3))/2)+"px";
+	
+    var vt4;
+    if(v4.offsetHeight)
+    {  
+    	vt4=v4.offsetHeight;
+    }
+    else if(v4.style.pixelHeight)
+    {
+    	vt4=v4.style.pixelHeight;
+    }
+
+    v4.style.top=((parseInt(no4.style.height)-parseInt(vt4))/2)+"px";
+	
+    var vt5;
+    if(v5.offsetHeight)
+    {  
+    	vt5=v5.offsetHeight;
+    }
+    else if(v5.style.pixelHeight)
+    {
+    	vt5=v5.style.pixelHeight;
+    }
+
+    v5.style.top=((parseInt(no5.style.height)-parseInt(vt5))/2)+"px";
+	
+    var hgt1;
+    if(gtxt.offsetHeight)
+    {  
+    	hgt1=gtxt.offsetHeight;
+    }
+    else if(gtxt.style.pixelHeight)
+    {
+    	hgt1=gtxt.style.pixelHeight;
+    }
+
+    gtxt.style.top=((parseInt(greater.style.height)-parseInt(hgt1))/2)+"px";
+
+    //smaller text
+    stxt.style.fontSize=parseInt(scrheight/15)+"px";
+    stxt.style.left=parseInt((0/100)*scrwidth)+"px";
+    stxt.style.width=parseInt(smaller.style.width)+"px";
+    var hgt2;
+    if(stxt.offsetHeight)
+    {  
+    	hgt2=stxt.offsetHeight;
+    }
+    else if(stxt.style.pixelHeight)
+    {
+    	hgt2=stxt.style.pixelHeight;
+    }        
+    stxt.style.top=((parseInt(smaller.style.height)-parseInt(hgt2))/2)+"px";
+
+
+
+    
+    /*! circular-progress - v0.2.1 - https://github.com/neoziro/circular-progress */
+
+var tL=parseInt(timer.style.left);
+var tW=parseInt(timer.style.width);
+var noW=parseInt(no1.style.width);
+
+//initial main posiiton of the 4-5 numbers during the game when they are moving left
+var l1=tL+((tW-noW)/2);
+var l4=scrwidth-(noW/2);
+var l2=l1+((l4-l1)/3);
+var l3=l2+((l4-l1)/3);
+var l5=l4+((l4-l1)/3);
+
+//positions of the numbers when they have to move right
+var r1=tL+((tW-noW)/2);
+var r4=-(noW/2);
+var r2=r1+((r4-r1)/3);
+var r3=r2+((r4-r1)/3);
+var r5=r4+((r4-r1)/3);
+
+//gap between two blocks anytime
+var dis=l2-l1;
+
+//inital distance from there respective positions of the numbers when the game starts
+var initial=(50/100)*scrwidth;
+
+    no1.style.left=initial+l1+ "px";
+	no2.style.left=initial+l2+ "px";
+	no3.style.left=initial+l3+ "px";
+	no4.style.left=initial+l4+ "px";
+	no5.style.left=initial+l5+ "px";
+
+	var clr="white";//colour of the timer bar
+	 
+(function () {
+
+  // List of 2D context properties
+  var ctxProperties = ['fillStyle', 'font', 'globalAlpha', 'globalCompositeOperation',
+        'lineCap', 'lineDashOffset', 'lineJoin', 'lineWidth',
+        'miterLimit', 'shadowBlur', 'shadowColor', 'shadowOffsetX',
+        'shadowOffsetY', 'strokeStyle', 'textAlign', 'textBaseLine',];
+
+  // Autoscale function from https://github.com/component/autoscale-canvas
+  var autoscale = function (canvas) {
+    var ctx = canvas.getContext('2d'),
+    ratio = window.devicePixelRatio || 1;
+    //console.log(window.devicePixelRatio);
+	//console.log(ratio);
+	
+
+	
+    if (1 !== ratio) {
+
+      canvas.style.width = parseInt(timer.style.width) + "px";
+      canvas.style.height = parseInt(timer.style.height) + "px";
+      canvas.width *= ratio;
+      canvas.height *= ratio;
+      ctx.scale(ratio, ratio);
+    }
+
+    return canvas;
+  };
+
+  // Utility function to extend a 2D context with some options
+  var extendCtx = function (ctx, options) {
+    for (var i in options) {
+      if (ctxProperties.indexOf(i) === -1) continue;
+
+      ctx[i] = options[i];
+    }
+  };
+
+  // Main CircularProgress object exposes on global context
+  var CircularProgress = this.CircularProgress = function (options) {
+    var ctx, i, property;
+
+    options = options || {};
+    this.el = document.createElement('canvas');
+  
+ // this.el.style.left="100px";
+  //this.el.style.top=100;
+  
+    this.options = options;
+
+    options.text = options.text || {};
+    options.text.value = options.text.value || null;
+
+    ctx = this.el.getContext('2d');
+
+    for (i in ctxProperties) {
+      property = ctxProperties[i];
+      options[property]= typeof options[property] !== 'undefined' ? options[property] : ctx[property];
+    }
+
+    if (options.radius) this.radius(options.radius);
+  };
+
+  // Update with a new `percent` value and redraw the canvas
+  CircularProgress.prototype.update = function (value) {
+	 // console.log("33333");
+	  this._percent = value;
+    this.draw();
+    return this;
+  };
+
+  // Specify a new `radius` for the circle
+  CircularProgress.prototype.radius = function (value) {
+    var size = value * 2;
+    this.el.width = size;
+    this.el.height = size;
+    autoscale(this.el);
+    return this;
+  };
+
+  // Draw the canvas
+  CircularProgress.prototype.draw = function () {
+    var tw, text, fontSize,
+    
+        options = this.options,
+        ctx = this.el.getContext('2d'),
+        percent = Math.min(this._percent, 100),
+        ratio = window.devicePixelRatio || 1,
+        angle = Math.PI * 2 * percent / 100,
+        size = this.el.width / ratio,
+        half = size / 2,
+        x = half,
+        y = half;
+   // console.log("4444");
+    ctx.clearRect(0, 0, size, size);
+
+    // Initial circle
+    if (options.initial) {
+    	//console.log("5555555");
+    	extendCtx(ctx, options);
+      extendCtx(ctx, options.initial);
+       
+	   
+      ctx.beginPath();
+      ctx.arc(x, y, half - ctx.lineWidth, 0, 2 * Math.PI, false);
+      ctx.strokeStyle = colorsArr[z][2];
+      ctx.globalAlpha=xyz;  
+      ctx.stroke();
+	 // ctx.closePath();
+	 // ctx.fill();
+    }
+
+    // Progress circle
+    extendCtx(ctx, options);
+
+    ctx.beginPath();
+    ctx.arc(x, y, half - ctx.lineWidth, 0, angle, false);
+    ctx.strokeStyle=clr;
+   ctx.globalAlpha=xyz;
+    ctx.stroke();
+   
+    // Text
+	/**
+    if (options.text) {
+      extendCtx(ctx, options);
+      extendCtx(ctx, options.text);
+    }
+
+    text = options.text.value === null ? (percent | 0) + '%' : options.text.value;
+    tw = ctx.measureText(text).width;
+    fontSize = ctx.font.match(/(\d+)px/);
+    fontSize = fontSize ? fontSize[1] : 0;
+
+    ctx.fillText(text, x - tw / 2 + 1, y + fontSize / 2 - 1);
+   **/
+    return this;
+  };
+
+}).call(this);
+    
+   
+   /**
+   
+    (function () {
+      var n, id, progress;
+
+      progress = new CircularProgress({
+        radius: 20
+      });
+
+      document.body.appendChild(progress.el);
+
+      n = 0;
+      id = setInterval(function () 
+	  {
+        if (n == 100) clearInterval(id);
+        progress.update(n++);
+      }, 100);
+    })();
+
+
+
+    (function () {
+      var n, id, progress;
+
+      progress = new CircularProgress({
+        radius: 40,
+        lineWidth: 2,
+        strokeStyle: 'black',
+        initial: {
+          lineWidth: 4,
+          strokeStyle: 'gray'
+        }
+      });
+
+      document.body.appendChild(progress.el);
+
+      n = 0;
+      id = setInterval(function () {
+        if (n == 100) clearInterval(id);
+        progress.update(n++);
+      }, 70);
+    })();
+**/
+
+//game logic
+
+
+//array of the elements to be moved
+var noArr=[no1,no2,no3,no4,no5];
+//array of the numbers div inside th moving elements
+var vArr=[v1,v2,v3,v4,v5];
+//console.log(noArr);
+//array of the positions of elements after they stop
+var posArr=[l1,l2,l3,l4,l5];
+//array of the random numbers that have come up for (greater-smaller) comparison
+var gsArr=[4,3,5,150,226];
+
+
+//animation speeds of the numbers moving left
+var pm=parseInt(scrwidth/80);//pixelmovement of the elements moving left
+var rr=7;//pixelmovement of the elements moving left
+
+
+
+
+//check for the pixelmovement being less than 1 in a few phones
+if(pm<1)
+	{
+	pm=1;
+	}
+///////////
+//console.log("pm="+pm);
+
+
+var gap=2000;//time for which the initial number is shown on the screen
+var rrw=50;//repeatrate of the changing opacity
+var n, id, progress;//timer variables not useful
+var start=false;//variable to start timer, which is false initially
+var once=true;//variable check to remove the first element only after it reaches its place
+var c=0;//the order of the element to be checked against the last element
+var C=0;//counter of correct moves
+var chk=0;//variable to stop elements from checking greater-smaller again & again--//1=true;0=false
+
+//setting random numbers on the screen
+var rnd=0;//number of random numbers generated in every group
+var fArr=[3,4,5,6,7,8,9,10];//random frequency array
+var rf=Math.floor(((fArr.length-1)-(0-1))*Math.random())+0;//order of random frequency generated from the random frequency array
+var f=fArr[rf];//random frequqncy generated
+var grpArr=[1,2,3,4,5,6,7,8,9];//array of the number to be multipled with the base
+var base=99;//base which is to be multipled with the grpArr to get the max & min no in the grp
+var grp=Math.floor(((grpArr.length-1)-(0-1))*Math.random())+0;//random order of the grp to be used to find max & min no
+var grpm=grpArr[grp];//value of th random group multiplier
+var Rno=0;//final random number generated
+
+
+
+//variable to avoid greater-smaller check continuously during drag
+var gs=0;//variable for greater smaller check while moving//0 false, 1 true
+
+
+//timer controlls
+//var time=30000;//time to be given to the user to play the game initially
+var extraArr=[35,33,31,29,27,25,23,21];//percentage of time to be given extra to the user
+var cons=10;//number of correct moves after which the time has to be increased
+var moves=0;//number of consecutive correct moves to check against the maximum moves
+
+
+//level change in th game
+var level=0;//level/stage of the game
+var lcArr=[20,40,60,80,100,110,120,130,140,150,160,170,180,190,200];//level change array, the elements define the number of moves after which the level will bw changed
+var addArr=5;//final counters after which the numbers keep shifting
+
+
+//changing color combinations with the change in level
+var blue=["#2c3e50","#6bb9f0","#c5eff7"];
+var green=["#26a65b","#ade7b2","#c5eff7"];
+var purple=["#674172","#aea8d3","#dcc6e0"];
+var yellow=["#f39c12","#fde3a7","#eb974e"];
+var gray=["#6c7a89","#bfbfbf","#c5eff7"];
+var chng=50;//gap number after which the color changes
+
+
+var colorsArr=[blue,yellow,purple,gray,green];//color changes with the changes in levels
+var z=0;//temporary variable for color change	
+
+//when instance of stopping timer is not colour change
+var inst="";
+
+
+//opacity change colour changes
+var rr3=100;
+
+
+var timeArr=[25000,25000,25000,25000,25000,25000];
+
+//changing up-down position of greater smaller with the change in level
+var udpos="gs";//updown position of the greater smaller box
+
+var udposArr=["sg","gs","sg","gs","sg","gs"]
+
+
+var moving="l";//variable provides the direction in which the elements are moving in the game//it changes with the change in level// "l" means moving left & "r" means moving right
+
+
+//shifting speed of the elements when level changes
+var pm1=(2*pm);
+var rr1=4;
+
+//opacity change repeatrate when user loses
+var rr2=100;
+
+
+//vibration time on lost
+var vib=500;
+
+//game lost check for stopping the timer
+var game="on";
+
+//playing sound files
+var wS="check.mp3";//winning sound
+var tS="extratime.mp3";//extra time sound
+
+
+function rndm()
+{
+	rnd++;
+	
+	if(rnd<f)
+	{
+		var max=(base*grpm)+(grpm-1);
+		var min=100*(grpm-1);
+		//console.log("max="+max);
+		//console.log("min="+min);
+		Rno=Math.floor(((max)-(min-1))*Math.random())+min;
+		//console.log("again");
+		//console.log("Rno="+Rno);
+		
+	}
+	else
+	{
+	rnd=0;
+	rf=Math.floor(((fArr.length-1)-(0-1))*Math.random())+0;//order of random frequency generated from the random frequency array
+	f=fArr[rf];//random frequqncy generated
+	grp=Math.floor(((grpArr.length-1)-(0-1))*Math.random())+0;
+	grpm=grpArr[grp];
+	var max=(base*grpm)+(grpm-1);
+	var min=100*(grpm-1);
+	Rno=Math.floor(((max)-(min-1))*Math.random())+min;
+	
+	}
+	
+	return Rno;
+}
+
+function set()
+{
+	mL();
+    timerstart();	
+    
+}
+	
+	
+function removefirst()
+{
+	
+	
+	var x=1.0;
+    var dec=0.09;
+    
+    noArr[0].style.opacity = x;
+
+    
+    setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},1*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},2*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},3*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},4*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},5*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},6*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},7*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		noArr[0].style.opacity = x;
+	},8*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		
+		noArr[0].style.opacity = x;
+	},9*rrw);
+	
+	setTimeout(function(){
+		x-=dec;
+		
+		noArr[0].style.opacity = x;
+	},10*rrw);
+	
+	setTimeout(function(){
+		noArr[0].style.opacity="0.0";
+		updateArr();
+    },11*rrw);	
+}
+	
+function updateArr()
+{
+	
+	c++;
+	noArr[noArr.length]=noArr[0];
+	noArr.shift();
+	vArr[vArr.length]=vArr[0];
+	vArr.shift();
+	noArr[noArr.length-1].style.left=posArr[4]+"px";
+	var y=rndm();
+	if(y==gsArr[gsArr.length-1])
+		{
+		y+=5;
+		}
+	gsArr.push(y);
+	vArr[vArr.length-1].innerHTML=y;
+	
+	for(var i=0;i<noArr.length;i++)
+	{
+		noArr[i].style.opacity="1.0";
+		noArr[i].style.zIndex="1";
+		noArr[i].style.display="inline";
+		noArr[i].style.top=grB+"px";
+		vArr[i].style.top=vT+"px";	
+	}
+	
+	
+	
+
+		    mL();
+		    start=true;
+	  //  console.log(noArr);
+		//console.log(gsArr);
+	
+}
+
+
+
+	
+
+
+
+	
+
+	
+var xyz=1;
+var opac=1;
+var D=75;//timer percentage at which the danger starts
+function timerstart()
+{
+
+        progress = new CircularProgress({
+        	
+          radius: (parseInt(timer.style.width)/2),
+          strokeStyle: 'white',
+          lineCap: 'square',
+          lineJoin: 'round',
+          lineWidth: (parseInt(timer.style.width)/12),
+          globalAlpha:xyz,
+          shadowBlur: parseInt((parseInt(timer.style.width)/8)),
+          shadowColor: 'black',
+          shadowOffsetX:0,
+          shadowOffsetY:0,
+          //text: {
+            //font: 'bold 0px arial',
+            //shadowBlur: 0
+          //},
+          initial: {
+            strokeStyle: colorsArr[z][2],
+            lineCap: 'square',
+            lineJoin: 'round',
+            lineWidth: (parseInt(timer.style.width)/12),
+            globalAlpha:xyz,  
+          //  shadowBlur: 30,
+           // shadowColor: 'black',
+           // shadowOffsetX:0,
+           // shadowOffsetY:0,
+          }
+        });
+
+        timer.appendChild(progress.el);
+
+        n = 0;
+        progress.update(n);
+        
+        	id = setInterval(function () {
+          
+        if (n == 100) 
+        	  {
+        	//console.log("clearing interval");
+        	 
+        	  clearInterval(id);
+        	  
+        	 
+       	  }
+         
+        //console.log("start="+start)
+      //    console.log("n="+n);
+          if (start==true)
+        	  {
+        	 // console.log("22222");
+        	// console.log("running & GAME="+game);
+        	 
+        	 if(game=="on")
+        		 {
+          progress.update(n++);
+        		 }
+        	 else
+        	 {
+        		if(inst!="clr")
+        			{
+        		 clearInterval(id);
+        			}
+        	 }
+          if(n>=D)
+        	  {
+        	  if(opac==1)
+        		 {
+        		  opac=0;
+        		 }
+        	  else
+        	  {
+        		  opac=1;
+        	  }
+        	  
+        	  }
+        	  }
+          
+        },(timeArr[z]/100));
+        
+	
+	
+
+
+
+
+
+	
+}
+	
+	
+var msno;	
+function mL()
+{
+	var L1=parseInt(noArr[0].style.left);
+
+	//console.log(noArr[0]);
+	noArr[0].style.left=parseInt(noArr[0].style.left)-pm+"px";
+	noArr[1].style.left=parseInt(noArr[1].style.left)-pm+"px";
+	noArr[2].style.left=parseInt(noArr[2].style.left)-pm+"px";
+	noArr[3].style.left=parseInt(noArr[3].style.left)-pm+"px";
+	noArr[4].style.left=parseInt(noArr[4].style.left)-pm+"px";
+	
+	if(L1>posArr[0])
+		{
+		setTimeout(mL,rr);
+		}
+	
+	else
+	{
+		
+		gs=0;
+		noArr[0].style.left=posArr[0]+"px";
+		noArr[1].style.left=posArr[1]+"px";
+		noArr[2].style.left=posArr[2]+"px";
+		noArr[3].style.left=posArr[3]+"px";
+		noArr[4].style.left=posArr[4]+"px";
+		
+		
+		if(once==true)
+			{
+			msg("1");
+	        msno=1;
+			once=false;
+			}
+		else
+		{
+			if(noArr[0]==no2)
+				{
+				console.log("second");
+				msg("2");
+				}
+			
+			if(noArr[0]==no3)
+			{
+			noArr[0].style.zIndex="100";
+			}
+			
+			chk=1;
+			
+		}
+	
+	}
+	
+}
+
+var msgArr=[]
+
+var m1Arr=[]
+var m2Arr=[]
+var m3Arr=[]
+var m4Arr=[]
+var m5Arr=[]
+var m6Arr=[]
+//gsArr.push(x);
+var framesArr=[26,13,11,12,28,27];
+
+for(var i=1;i<29;i++)
+{
+	if(i<=framesArr[0])
+	{
+		if(i<=9)
+		{
+		m1Arr.push("file:///android_asset/game/greater-smaller/images/first/first000"+i+".png");
+		}
+		else
+		{
+			m1Arr.push("file:///android_asset/game/greater-smaller/images/first/first00"+i+".png");
+		}
+	}
+	if(i<=framesArr[1])
+	{	if(i<=9)
+		{
+		m2Arr.push("file:///android_asset/game/greater-smaller/images/second/second000"+i+".png");
+		}
+	else{
+		m2Arr.push("file:///android_asset/game/greater-smaller/images/second/second00"+i+".png");
+		}
+	}
+	if(i<=framesArr[2])
+	{
+		if(i<=9)
+		m3Arr.push("file:///android_asset/game/greater-smaller/images/third/third000"+i+".png");
+		
+		else
+		m3Arr.push("file:///android_asset/game/greater-smaller/images/third/third00"+i+".png");
+		
+	}
+	if(i<=framesArr[3])
+	{
+		if(i<=9)
+		m4Arr.push("file:///android_asset/game/greater-smaller/images/fourth/fourth000"+i+".png");
+		
+		else
+		m4Arr.push("file:///android_asset/game/greater-smaller/images/fourth/fourth00"+i+".png");
+		
+	}
+	if(i<=framesArr[4])
+	{
+		if(i<=9)
+		m5Arr.push("file:///android_asset/game/greater-smaller/images/fifth/fifth000"+i+".png");
+		
+		else
+		m5Arr.push("file:///android_asset/game/greater-smaller/images/fifth/fifth00"+i+".png");
+	}
+	if(i<=framesArr[5])
+	{
+		if(i<=9)
+		m6Arr.push("file:///android_asset/game/greater-smaller/images/sixth/sixth000"+i+".png");
+		
+		else
+		m6Arr.push("file:///android_asset/game/greater-smaller/images/sixth/sixth00"+i+".png");
+	}
+	
+}
+
+//console.log(m1Arr);
+//console.log(m2Arr);
+//console.log(m3Arr);
+//console.log(m4Arr);
+//console.log(m5Arr);
+//console.log(m6Arr);
+
+var rr4=100;
+
+function msg(number)
+{
+	
+	if(number=="1")
+	{
+		var x=-1;
+		//alert("seting interval");
+		var sI1=setInterval(function(){
+		x++;
+				msgbox.style.display="inline";
+			if(x<=m1Arr.length-1)
+			{
+				mimg.src=m1Arr[x];
+			}
+			else
+			{
+				clearInterval(sI1);
+				setTimeout(function(){
+					msgbox.style.display="none";
+					removefirst();
+				},gap)
+				
+			}
+			
+		},rr4)
+		
+	}
+
+	else if(number=="2")
+	{
+		var x=-1;
+		//alert("seting interval");
+		var sI1=setInterval(function(){
+		x++;
+				msgbox.style.display="inline";
+			if(x<=m2Arr.length-1)
+			{
+				mimg.src=m2Arr[x];
+			}
+			else
+			{
+				clearInterval(sI1);
+				setTimeout(function(){
+					msgbox.style.display="none";
+					msg("3");
+				},gap)
+				
+			}
+			
+		},rr4)
+		
+	}
+	
+	else if(number=="3")
+	{
+		var x=-1;
+		//alert("seting interval");
+		var sI1=setInterval(function(){
+		x++;
+				msgbox.style.display="inline";
+			if(x<=m3Arr.length-1)
+			{
+				mimg.src=m3Arr[x];
+			}
+			else
+			{
+				clearInterval(sI1);
+				setTimeout(function(){
+					msgbox.style.display="none";
+					noArr[0].style.zIndex="100";
+				},gap)
+				
+			}
+			
+		},rr4)
+	}
+	
+	else if(number=="4")
+	{
+		var x=-1;
+		//alert("seting interval");
+		var sI1=setInterval(function(){
+		x++;
+				msgbox.style.display="inline";
+			if(x<=m4Arr.length-1)
+			{
+				mimg.src=m4Arr[x];
+			}
+			else
+			{
+				clearInterval(sI1);
+				setTimeout(function(){
+					msgbox.style.display="none";
+				},gap)
+				
+			}
+			
+		},rr4)
+	}
+	
+	else if(number=="5")
+	{
+		var x=-1;
+		//alert("seting interval");
+		var sI1=setInterval(function(){
+		x++;
+				msgbox.style.display="inline";
+			if(x<=m5Arr.length-1)
+			{
+				mimg.src=m5Arr[x];
+			}
+			else
+			{
+				clearInterval(sI1);
+				setTimeout(function(){
+					msgbox.style.display="none";
+				},gap)
+				
+			}
+			
+		},rr4)
+	}
+
+	else if(number=="6")
+	{
+		var x=-1;
+		//alert("seting interval");
+		var sI1=setInterval(function(){
+		x++;
+				msgbox.style.display="inline";
+			if(x<=m6Arr.length-1)
+			{
+				mimg.src=m6Arr[x];
+			}
+			else
+			{
+				clearInterval(sI1);
+				setTimeout(function(){
+					xyz=0;
+					msgbox.style.display="none";
+					skip.style.display="none";
+					play.style.display="inline";
+					blackbg.style.display="inline";
+                    no1.style.display="none";
+                    no2.style.display="none";
+                    no3.style.display="none";
+                    no4.style.display="none";
+                    no5.style.display="none";
+				},gap)
+				
+			}
+			
+		},rr4)
+	}
+	
+	
+	
+}
+
+
+$(function() {
+	  $( "#no1" ).draggable({containment: "parent",
+		  
+		  stop: function()
+		  {
+			//  console.log("stop");
+				if(gs==0)
+					{
+				var x=parseInt(no1.style.top);
+			   
+				
+				if(x>grB+((5/100)*parseInt(timer.style.width)))
+					{
+					gs=1;
+				//	console.log("moveddown");
+					down();
+					}
+				else if (x<grB-((5/100)*parseInt(timer.style.width)))
+				{
+					gs=1;	
+			//	console.log("movedup");
+				up();
+				}
+				else
+				{
+					no1.style.left=posArr[0]+"px";
+					no1.style.top=grB+"px";
+				}
+					}
+				
+				
+
+		}
+	  })
+});
+
+
+$(function() {
+	  $( "#no2" ).draggable({containment: "parent",
+		  
+		  stop: function()
+		  {
+			 // console.log("stop");
+				if(gs==0)
+					{
+				var x=parseInt(no2.style.top);
+			   
+				
+				if(x>grB+((5/100)*parseInt(timer.style.width)))
+					{
+				    msg("5");
+					down();
+					}
+				else if (x<grB-((5/100)*parseInt(timer.style.width)))
+				{
+					no2.style.left=posArr[0]+"px";
+					no2.style.top=grB+"px";
+					msg("4");
+				}
+				else
+				{
+					no2.style.left=posArr[0]+"px";
+					no2.style.top=grB+"px";
+				}
+					}
+				
+				
+
+		}
+	  })
+});
+
+
+$(function() {
+	  $( "#no3" ).draggable({containment: "parent",
+		  
+		  stop: function()
+		  {
+			
+				if(gs==0)
+					{
+				var x=parseInt(no3.style.top);
+			   
+				
+				if(x>grB+((5/100)*parseInt(timer.style.width)))
+					{
+					no3.style.left=posArr[0]+"px";
+					no3.style.top=grB+"px";
+					}
+				else if (x<grB-((5/100)*parseInt(timer.style.width)))
+				{
+					
+				up();
+				msg("6");
+				}
+				
+				else
+				{
+					no3.style.left=posArr[0]+"px";
+					no3.style.top=grB+"px";
+				}
+					}
+				
+				
+
+		}
+	  })
+});
+
+
+
+$(function() {
+	  $( "#no4" ).draggable({containment: "parent",
+		  
+		  stop: function()
+		  {
+			//  console.log("stop");
+				if(gs==0)
+					{
+				var x=parseInt(no4.style.top);
+			   
+				
+				if(x>grB+((5/100)*parseInt(timer.style.width)))
+					{
+					gs=1;
+				//	console.log("moveddown");
+					down();
+					}
+				else if (x<grB-((5/100)*parseInt(timer.style.width)))
+				{
+					gs=1;	
+		//		console.log("movedup");
+				up();
+				}
+				else
+				{
+					no4.style.left=posArr[0]+"px";
+					no4.style.top=grB+"px";
+				}
+					}
+				
+				
+
+		}
+	  })
+});
+
+
+$(function() {
+	  $( "#no5" ).draggable({containment: "parent",
+		  
+		  stop: function()
+		  {
+		//	  console.log("stop");
+				if(gs==0)
+					{
+				var x=parseInt(no5.style.top);
+			   
+				
+				if(x>grB+((5/100)*parseInt(timer.style.width)))
+					{
+					gs=1;
+			//		console.log("moveddown");
+					down();
+					}
+				else if (x<grB-((5/100)*parseInt(timer.style.width)))
+				{
+					gs=1;	
+			//	console.log("movedup");
+				up();
+				}
+				else
+				{
+					no5.style.left=posArr[0]+"px";
+					no5.style.top=grB+"px";
+				}
+					}
+				
+				
+
+		}
+	  })
+});
+
+function down()
+{
+	
+	var x=1.0;
+    var dec=0.1;
+    var rrs=25;
+    var elem=noArr[0];
+    
+    elem.style.opacity = x;
+
+    
+    setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},1*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},2*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},3*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},4*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},5*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},6*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},7*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},8*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		
+		elem.style.opacity = x;
+	},9*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		
+		elem.style.opacity = "0.0";
+		//noArr[0].style.display = "none";
+	},10*rrs);
+
+	
+	setTimeout(function(){
+
+		if(level>=1)
+			{
+		
+				if(udpos=="gs")
+				{
+					check("smaller","down");
+				}
+				else
+				{
+					check("greater","down");
+				}
+	
+			}
+		else{
+			check("smaller","down");
+		    }
+		
+		
+	},12*rrs);
+}
+
+
+
+
+
+function up()
+{
+	
+	var x=1.0;
+    var dec=0.1;
+    var rrs=25;
+    
+    var elem=noArr[0];
+    elem.style.opacity = x;
+
+    
+    setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},1*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},2*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},3*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},4*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},5*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},6*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},7*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		elem.style.opacity = x;
+	},8*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		
+		elem.style.opacity = x;
+	},9*rrs);
+	
+	setTimeout(function(){
+		x-=dec;
+		
+		elem.style.opacity = "0.0";
+		//noArr[0].style.display = "none";
+	},10*rrs);
+	
+	setTimeout(function(){
+		
+		if(level>=1)
+		{
+	
+			if(udpos=="gs")
+			{
+				check("greater","up");
+			}
+			else
+			{
+				check("smaller","up");
+			}
+
+		}
+	else{
+		
+		check("greater","up");
+	    
+	    }
+		
+	},12*rrs);
+	
+	
+	
+}
+
+
+function check(val,dir)
+{
+	
+	if(chk==1)
+	{
+		chk=0;
+//	console.log("earlier="+gsArr[c-1]);
+//	console.log("now="+gsArr[c]);
+	if(val=="greater")
+		
+		{
+		
+		if(gsArr[c]>gsArr[c-1])
+			{
+			
+			if(dir=="up")
+				{
+			    //blink(gtxt,"r");
+				}
+			else
+				{
+				//blink(stxt,"r");
+				}
+			
+			 //console.log("right"+gsArr[c]+">"+gsArr[c-1]);
+			 if(game=="on")
+				 {
+			C++;
+			Android.playSoundgs(wS);
+			evaluate();
+			updateArr();
+				 }
+			}
+		else
+			{
+			if(dir=="up")
+				{
+			    blink(stxt,"w");
+				}
+				else
+				{
+				blink(gtxt,"w");
+				}
+
+			
+			//console.log("wrong"+gsArr[c]+"<"+gsArr[c-1]);
+			//alert("you lose & score="+C);
+			game="off";
+			Android.vibrate(vib);
+			var scr=C.toString();
+			Android.checkhighscore(scr);
+			setTimeout(function(){
+				
+					},15*rr2);
+			}
+	
+		}
+	
+	else if(val=="smaller")
+		{
+		
+		if(gsArr[c]<gsArr[c-1])
+			{
+	        if(dir=="down")
+	        	{
+			//blink(stxt,"r");
+	        	}
+	        else
+	        	{
+	        	//blink(gtxt,"r");
+		        }
+			//	console.log("right"+gsArr[c]+"<"+gsArr[c-1]);
+			 if(game=="on")
+				 {
+			C++;
+			Android.playSoundgs(wS);
+			evaluate();
+			updateArr();
+				 }
+			}
+		else
+			{
+	        if(dir=="down")
+        		{
+			blink(gtxt,"w");
+        		}
+        	else
+        		{
+        		blink(stxt,"w");
+	        	}
+	        //	console.log("wrong"+gsArr[c]+">"+gsArr[c-1]);
+			//alert("you lose & score="+C)
+			game="off";
+	        Android.vibrate(vib);
+			var scr=C.toString();
+			Android.checkhighscore(scr);
+			setTimeout(function(){
+				
+					},15*rr2);
+	        
+			}
+		
+		}
+	
+	
+	
+	
+	
+	
+	}
+	
+	
+}
+
+
+function blink(el,color)
+{
+	//console.log("blink");
+	if(color=="r")
+		{
+	//el.style.backgroundColor="#27ae60";
+		}
+	else if(color=="w")
+		{
+	el.style.opacity="0.0";
+	setTimeout(function(){
+		el.style.opacity="1.0";
+	},1*rr2)
+	setTimeout(function(){
+		el.style.opacity="0.0";
+	},2*rr2)
+	setTimeout(function(){
+		el.style.opacity="1.0";
+	},3*rr2)
+	setTimeout(function(){
+		el.style.opacity="0.0";
+	},4*rr2)
+	setTimeout(function(){
+		el.style.opacity="1.0";
+	},5*rr2)
+	setTimeout(function(){
+		el.style.opacity="0.0";
+	},6*rr2)
+	setTimeout(function(){
+		el.style.opacity="1.0";
+	},7*rr2)
+		}
+	
+	
+	
+}
+
+var deg=0;
+var chn=10;
+var rot;
+function evaluate()
+{
+	//console.log("moves="+moves);
+	//console.log("consecutive="+cons);
+	//console.log("extra="+extra);	
+	
+	//console.log("evaluate")
+	var i=0;
+	var changed=0;
+		rot = setInterval(function(){
+			
+			
+			counter.style.WebkitTransform = "rotateY("+deg+"deg)";
+			counter.style.opacity=(1-(deg/360));
+			
+			if(i<360)
+			{
+				i+=chn;
+				deg+=chn;
+				//console.log("inside rot")
+				//console.log("degrees="+deg)
+			//console.log("i="+i)
+				
+				
+			if(i>=90 && changed==0)
+				{
+				changed=1;
+				//console.log("changing counter & c="+C);
+				counter.innerHTML=C;
+				}
+			}
+			
+			else
+			{
+				deg=0;
+				counter.style.WebkitTransform = "rotateY(0deg)";
+				counter.style.opacity="1.0";
+				//console.log("clearing interval");
+				clearInterval(rot);
+					
+			}
+			
+		},10)
+				
+				
+		
+			
+	
+	
+	moves++;
+	if(moves==cons)
+		{
+	//	console.log("time inc");
+		moves=0;
+		Android.playSoundgs(tS);
+		if (z>=extraArr.length)
+			{
+			n-=extraArr[extraArr.length-1];
+			}
+		else
+		{
+		n-=extraArr[z];
+		}
+		if(n<0)
+			{
+			n=0;
+			}
+		opac=1;
+		clr="green";//colour of the timer bar
+		setTimeout(function(){
+			clr="white";
+		},1000)
+	/**	clr=0.25;//colour of the timer bar
+		setTimeout(function(){
+			clr=1.0;
+		},1000)
+	**/
+		}
+	
+	
+	
+}
+
+
+
+btn.addEventListener('touchstart', function(event) {
+
+	if (event.targetTouches.length > 0) {
+		var touch = event.targetTouches[0];
+		
+		try{
+			
+			Android.instructions();
+			
+		}
+		finally
+		{
+			
+		}
+		
+		event.preventDefault();
+	}
+}, false);
+
+
+
+function starting()
+{
+
+	 try { 
+			Android.test;
+			 }
+	finally{
+		set();
+	}		 
+	
+}
+
+
+window.onload=starting;
+    </script>
+  </body>
+</html>
